@@ -122,9 +122,13 @@ def actor_delete(id):
     """ Fourth route. Param for deleting from Actor table
     """
     app.logger.info(id)
-    cursor = get_db().cursor()
-    cursor.execute("DELETE FROM Actor WHERE actor_id=%s ",id)
-    message=f"Deleted actor id {id}"
-    app.logger.info(message)
-    flash(message)
+    try:
+        cursor = get_db().cursor()
+        cursor.execute("DELETE FROM Actor WHERE actor_id=%s ",id)
+        message=f"Deleted actor id {id}"
+        app.logger.info(message)
+        flash(message)
+    except Exception as e:
+        message = f"error in delete operation: {e}"
+        flash(message)
     return redirect(url_for('home'))
