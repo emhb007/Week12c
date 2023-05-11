@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<!-- FROM layout.html CHANGE THIS TO USE URL_FOR for stylesheet-->
+
+  <head>
+    <title>{{title}}</title>
+    <meta charset="utf-8">
+    <meta name="description" content="{{description}}">
+    <link href="/static/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+		<div class="alert alert-danger" role="alert">
+			{{ message }}
+		</div>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+    {% include 'navigation.html' %}
+    {% block content %}{% endblock %}
+  </body>
+
+</html>

@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<!-- FROM home.html -->
+
+        <h1>{{title}}</h1>
+        <p>{{description}}</p>
+{% if records %}
+    <h2>There are {{ records|length }} records in the Actors table!</h2>
+    <table>
+        <tr><th>Actor ID</th><th>First Name</th><th>Last Name</th></tr>
+        {% for record in records %}
+        <tr>
+            <td><a href="{{ url_for('actor_display',id=record['actor_id']) }}">{{ record['actor_id'] }}</a></td>
+            <td>{{ record['first_name'] }} </td>
+            <td>{{ record['last_name'] }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+<h2>No records returned.</h2>
+{% endif %}
+	<!-- home.html ends here-->
+{% endblock %}
